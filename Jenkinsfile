@@ -9,7 +9,7 @@ pipeline {
 
     stage('test') {
       parallel {
-        stage('test') {
+        stage('unitaire') {
           steps {
             bat 'php bin/phpunit tests/unit'
           }
@@ -27,6 +27,12 @@ pipeline {
           }
         }
 
+      }
+    }
+
+    stage('deploy') {
+      steps {
+        bat 'symfony server:start'
       }
     }
 
